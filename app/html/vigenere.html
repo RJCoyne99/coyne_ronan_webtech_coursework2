@@ -1,0 +1,25 @@
+<html>
+<link rel ="stylesheet" href ="external.css" type ="text/css"/>
+<body onunload="WriteCookies()" onload="GetCookies()">
+<div class="fixed">
+<p> <input id="usernameval" size="20" value="" readonly></p>
+</div>
+<div class = "Homepage"><p><b><td><a href="homepage.html">HOMEPAGE</a></td></b></p></div>
+<p><h1>Vigenere's Cipher</h1></p>
+<p><h2>Recipient Username:</h2></p>
+<p> <input id="target" size="40" value="Please enter name of user you wish to message"></p>
+<p><h2>Secret message:</h2></p>
+<p> <input id="text" size="80" value="hello"></p>
+<p>Shift by key: <input id="key" size="2" value="wow"></p>
+<p><button onclick="Set_Output(Encode(false, (document.getElementById('text').value), (document.getElementById('key').value)))">Encrypt</button> <button onclick="Set_Output(Encode(true, (document.getElementById('text').value), (document.getElementById('key').value)))">Decrypt</button>  </p>
+<p>Encoded message:
+<p> <input id="output" size="80" value="" readonly></p>
+<p><button onclick="Send_VigMessage((document.getElementById('usernameval').value), (document.getElementById('target').value), output.value, ('Vigenere'), ((document.getElementById('key').length))); alert('Message Sent!')">SEND</button> </p>
+<script src="vigenere.js"></script>
+<script src="zoom.js"></script>
+<script src="login.js"></script>
+<body onload="zoom('200%')">
+</body>
+</body>
+</body>
+</html>

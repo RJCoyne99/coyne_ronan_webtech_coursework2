@@ -1,0 +1,72 @@
+<html>
+<link rel ="stylesheet" href ="external.css" type ="text/css"/>
+<p><h1>Received messages</h1></p>
+<div class="fixed">
+<p> <input id="usernameval" size="20" value="" readonly></p>
+</div>
+<div class = "Homepage"><p><b><td><a href="homepage.html">HOMEPAGE</a></td></b></p></div>
+<div class="messages">
+</div>
+<script>
+function getSentMessages(){
+ var user = document.getElementById('usernameval').value;
+$.ajax({
+    url: "http://localhost:3000/messages",
+    type: "GET",
+    dataType: "json",
+	data: 
+	{
+	username : user
+	},
+    success: function(data){
+        data.forEach(SendMessage);
+        }
+    });
+};
+</script>
+<script>
+function SendMessage(data){
+        addMessages(data.PK, data.Sender, data.Message, data.Cipher, data.CKEY);
+        }
+</script>
+<script>
+function addMessages(PK, sender, message, cipher, CKEY){
+	var CaesarBtn = '<p><button onclick="Set_Output(Crypt(message, CKEY))">Encrypt</button> <button onclick="Set_Output(DeCrypt(message, CKEY))">Decrypt</button> </p>';
+    var VigBtn = '<p><button onclick="Set_Output(Encode(false))">Encrypt</button> <button onclick="Set_Output(Encode(true))">Decrypt</button>  </p>';
+	var msgindex = "msg" + PK;
+	var outmsg = "outmsg" + PK;
+	var decodedmsg = ""
+	var str = "";
+	if (cipher == "Caesar")
+	{
+	decodedmsg = DeCrypt(message, CKEY);
+	}
+	if (cipher == "Vigenere")
+   {
+   decodedmsg = Encode(message, CKEY);
+   } 
+	
+	str += "<p>";
+	str += "<h2> Message From: </h3>";
+	str += "<h3> "+sender+" </h3>";
+	str += "<h2> Message Says: </h2>";
+	str += '<p><input id='+msgindex+' size="30" value='+message+' readonly></p>';
+	str += "<h2> Decrypted Text </h2>";
+	str += '<p><input id='+outmsg+' size="30" value='+decodedmsg+' readonly></p>';
+	str += "</p>";
+  	
+   
+   str += "</div>";
+   $('.messages').append(str);  
+
+   }
+
+</script>
+</script>
+<script src="vigenere.js"></script>
+<script src="caeser.js"></script>
+<script src="login.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+<body onunload="WriteCookies()" onload="GetCookies(); getSentMessages()">
+</body>
+</html>

@@ -1,0 +1,23 @@
+<html>
+<link rel ="stylesheet" href ="external.css" type ="text/css"/>
+<div class="fixed">
+<p> <input id="usernameval" size="20" value="" readonly></p>
+</div>
+<div class = "Homepage"><p><b><td><a href="homepage.html">HOMEPAGE</a></td></b></p></div>
+<h1>Caesar Cipher</h1>
+<p><h2>Recipient Username:</h2></p>
+<p> <input id="target" size="40" value="Username"></p>
+<p><h2>Secret message:</h2></p>
+<p><input id="text" size="80" value="hello"></p>
+<p>Shift by key: <input id="key" size="2" value="3"></p>
+<p><button onclick="Set_Output(Crypt(document.getElementById('text').value, document.getElementById('key').value))">Encrypt </button> <button onclick="Set_Output(DeCrypt(document.getElementById('text').value, document.getElementById('key').value))">Decrypt</button> </p>
+<p>Encoded message:
+<p> <input id="output" size="80" value="" readonly></p>
+<p><button onclick="Send_Message((document.getElementById('usernameval').value), (document.getElementById('target').value), output.value, ('Caesar'), (document.getElementById('key').value)); alert('Message Sent!')">SEND</button> </p>
+<script src="login.js"></script>
+<script src="caeser.js"></script>
+<script src="zoom.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+<body onunload="WriteCookies()" onload="GetCookies()">
+</body>
+</html>
